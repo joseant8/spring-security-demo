@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity  // permite a Spring aplicar esta configuracion a la configuraicon de seguridad global
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // Este método define que rutas deben ser securizadas y cuales no
@@ -19,15 +19,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/", "/home").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
+                    .loginPage("/login")
+                    .permitAll()
+                    .and()
                 .logout()
-                .permitAll();
+                    .permitAll();
     }
 
     @Bean
